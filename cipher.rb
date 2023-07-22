@@ -1,19 +1,19 @@
-def cipher(string = '', number = 2)
-    result = ""
-    string.each_char do |char|
-        if char.ord.between?(65, 90) || char.ord.between?(97, 122)
-            new_char = char.ord + number
-            new_char -= 26 if new_char > 90 && char.ord <= 90 || new_char > 122
-            result += new_char.chr
+def cipher(str, nb)
+    new_str = ""
+    str.each_char do |chr|
+        if chr.ord.between?(65, 90) || chr.ord.between?(97, 122)
+            new_ord = chr.ord + nb
+            new_ord > 90 && chr.ord <= 90 || new_ord > 122 ? new_ord -= 26 : new_ord
+            new_str += new_ord.chr
         else
-            result += char
+            new_str += chr
         end
     end
-    result
+    new_str
 end
 
 print "Enter a message to encrypt:"
-string_to_cipher = gets.chomp
+str_to_cipher = gets.chomp
 print "Enter the shift factor:"
-number_to_shift = gets.chomp.to_i
-puts cipher(string_to_cipher, number_to_shift)
+nb_to_shift = gets.chomp.to_i
+puts cipher(str_to_cipher, nb_to_shift)
